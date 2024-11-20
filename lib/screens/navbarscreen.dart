@@ -79,8 +79,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
             IconButton(
               onPressed: () {
                 setState((){
-            currentIndex = 3;
-          });
+                  currentIndex = 3;
+                });
               },
               icon: Icon(
                 Icons.shopping_cart_outlined,
