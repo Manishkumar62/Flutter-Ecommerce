@@ -1,5 +1,5 @@
+import 'package:ecommerce/models/category.dart';
 import 'package:ecommerce/models/product.dart';
-import 'package:ecommerce/screens/Home/Widget/category.dart';
 import 'package:ecommerce/screens/Home/Widget/homeappbar.dart';
 import 'package:ecommerce/screens/Home/Widget/imageslider.dart';
 import 'package:ecommerce/screens/Home/Widget/productcard.dart';
@@ -15,8 +15,10 @@ class HomeScreen extends StatefulWidget{
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentSlider = 0;
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    List<List<Product>> selectedCategories = [all, shoes, all, all, all, all];
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -39,7 +41,55 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
               ),
               const SizedBox(height: 35,),
-              const Categories(),
+              SizedBox(
+      height: 130,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (context, index){
+          return GestureDetector(
+            onTap: (){
+              setState(() {
+                selectedIndex = index;
+              });
+            },
+            child: Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: selectedIndex == index
+                ? Colors.blue[200]
+                : Colors.transparent
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    height: 65,
+                    width: 65,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(categories[index].image),
+                        fit: BoxFit.cover
+                      )
+                    ),
+                  ),
+                  const SizedBox(height: 5,),
+                  Text(
+                    categories[index].title, 
+                    style: const TextStyle(
+                      fontSize: 16, 
+                      fontWeight: 
+                      FontWeight.bold
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    ),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children:[
@@ -69,10 +119,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20
                 ),
-                itemCount: products.length,
+                itemCount: selectedCategories[selectedIndex].length,
                 itemBuilder: (context,index){
                   return ProductCard(
-                    product: products[index]
+                    product: selectedCategories[selectedIndex][index]
                   );
                 },
               )

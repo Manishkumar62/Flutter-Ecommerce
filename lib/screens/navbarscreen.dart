@@ -2,6 +2,7 @@ import 'package:ecommerce/constants.dart';
 import 'package:ecommerce/screens/Cart/cart_screen.dart';
 import 'package:ecommerce/screens/Favorite/favourite.dart';
 import 'package:ecommerce/screens/Home/homescreen.dart';
+import 'package:ecommerce/screens/Profile/profile.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -18,7 +19,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     Favorite(),
     HomeScreen(),
     CartScreen(),
-    Scaffold()
+    Profile()
   ];
 
   @override

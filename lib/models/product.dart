@@ -26,7 +26,7 @@ class Product {
   });
 }
 
-final List<Product> products = [
+final List<Product> all = [
   Product(
     title: "Wireless Headphones",
     description: "Wireless Headphones with good sound quality",
@@ -47,6 +47,56 @@ final List<Product> products = [
     title: "smart watch",
     description: "smart watch with good display quality",
     image: "images/smartwatch.jpg",
+    price: 120,
+    colors: [
+      Colors.black,
+      Colors.blue,
+      Colors.orange,
+    ],
+    catogary: "Electronics",
+    rate: 4.5,
+    quantity: 1,
+    seller: "John Wick",
+    review: "(320 Reviews)",
+  ),
+  Product(
+    title: "Mens Jacket",
+    description: "Mens Jacket with good quality",
+    image: "images/mensjacket.jpg",
+    price: 155,
+    colors: [
+      Colors.blueAccent,
+      Colors.orange,
+      Colors.green,
+    ],
+    catogary: "winter clothes",
+    rate: 4.5,
+    quantity: 1,
+    seller: "jacket store",
+    review: "(20 Reviews)",
+  ),
+];
+final List<Product> shoes = [
+  Product(
+    title: "smart watch",
+    description: "smart watch with good display quality",
+    image: "images/smartwatch.jpg",
+    price: 120,
+    colors: [
+      Colors.black,
+      Colors.blue,
+      Colors.orange,
+    ],
+    catogary: "Electronics",
+    rate: 4.5,
+    quantity: 1,
+    seller: "John Wick",
+    review: "(320 Reviews)",
+  ),
+  Product(
+    title: "Wireless Headphones",
+    description: "Wireless Headphones with good sound quality",
+    image: "images/wirelessearphone.jpg",
     price: 120,
     colors: [
       Colors.black,

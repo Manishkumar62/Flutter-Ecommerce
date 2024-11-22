@@ -1,3 +1,4 @@
+import 'package:ecommerce/Provider/favorite_provider.dart';
 import 'package:ecommerce/constants.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/screens/Detail/detailsscreen.dart';
@@ -9,6 +10,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = FavoriteProvider.of(context);
     return GestureDetector(
       onTap: (){
         Navigator.push(
@@ -30,33 +32,36 @@ class ProductCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 15,),
+                const SizedBox(height: 15,),
                 Center(
-                  child: Image.asset(
-                    product.image, 
-                    width: 130,
-                    height: 130,
-                    fit: BoxFit.cover,
+                  child: Hero(
+                    tag: product.image,
+                    child: Image.asset(
+                      product.image, 
+                      width: 150,
+                      height: 140,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Padding(
-                  padding: EdgeInsets.only(left:10),
+                  padding: const EdgeInsets.only(left:10),
                   child: Text(
                     product.title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16
                     ),
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
                       "\$${product.price}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 17
                       ),
@@ -67,7 +72,7 @@ class ProductCard extends StatelessWidget {
                         (index) => Container(
                           width: 18,
                           height: 18,
-                          margin: EdgeInsets.only(right: 4),
+                          margin: const EdgeInsets.only(right: 4),
                           decoration: BoxDecoration(
                             color: product.colors[index],
                             shape: BoxShape.circle
@@ -78,6 +83,34 @@ class ProductCard extends StatelessWidget {
                   ],
                 )
               ],
+            ),
+          ),
+          Positioned(
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: const BoxDecoration(
+                  color: kprimaryColor,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    bottomRight: Radius.circular(10)
+                  )
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    provider.toggleFavorite(product);
+                  },
+                  child: Icon(
+                    provider.isExist(product)
+                    ? Icons.favorite
+                    : Icons.favorite_border,
+                    color: Colors.white, 
+                    size: 22,
+                  ),
+                ),
+              ),
             ),
           )
         ],
